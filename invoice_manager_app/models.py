@@ -20,6 +20,7 @@ class AppUser(models.Model):
         return self.user.username
 
 
+#ashsih
 class Customer(models.Model):
     name = models.CharField(max_length=100)
     address = models.CharField(max_length=200, null=True)
@@ -65,7 +66,7 @@ class Order(models.Model):
     paid_status = models.CharField(max_length=15, choices=paid_status, default='paid')
     total = models.FloatField()
     due_amount = models.FloatField(null=True, default=0)
-    
+
 
     def __str__(self):
         return self.customer.name
