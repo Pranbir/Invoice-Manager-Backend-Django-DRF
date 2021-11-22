@@ -5,3 +5,4 @@ sqlparse==0.4.2
 drf-yasg==1.20.0
 markdown
 django-filter
+django-rest-knox

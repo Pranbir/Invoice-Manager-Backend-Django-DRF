@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'invoice_manager_app'
+    'invoice_manager_app',
+    'knox'
 ]
 
 MIDDLEWARE = [
@@ -126,3 +127,16 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 INSTALLED_APPS += ['rest_framework','drf_yasg',]
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'knox.auth.TokenAuthentication',
+   ) 
+}
+import django
+django.setup()
+from invoice_manager_app.serializer import UserSerializer
+from datetime import timedelta
+REST_KNOX={
+    'USER_SERIALIZER':'invoice_manager_app.serializer.UserSerializer',
+    'TOKEN_TTL': timedelta(hours = 24*7)
+}
