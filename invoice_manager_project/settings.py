@@ -77,8 +77,11 @@ WSGI_APPLICATION = 'invoice_manager_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'invoice2',
+        'USER': 'postgres',
+        'PASSWORD': 'Abhi@2017',
+        'HOST': 'localhost'
     }
 }
 

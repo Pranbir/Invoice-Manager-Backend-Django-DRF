@@ -25,3 +25,51 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields=['id','username','password']
 # ----
+
+#Abhishek----------
+
+class customer_serializer(serializers.Serializer):
+    name = serializers.CharField(max_length=100)
+    address = serializers.CharField(max_length=200, )
+    phone = serializers.CharField(max_length=20)
+    email = serializers.EmailField(max_length=100)
+
+
+class tax_serializer(serializers.Serializer):
+    name = serializers.CharField(max_length=100)
+    rate = serializers.FloatField()
+
+class product_serializer(serializers.Serializer):
+    name = serializers.CharField(max_length=100)
+    code = serializers.CharField(max_length=10, )
+    price = serializers.FloatField()
+    description = serializers.CharField(max_length=1000)
+
+
+class order_serializer(serializers.Serializer):
+
+    customer = serializers.IntegerField()
+    date = serializers.DateField()
+    due_date = serializers.DateField()
+    discount_type = serializers.CharField()
+    discount = serializers.FloatField()
+    paid_status = serializers.CharField()
+    total = serializers.FloatField()
+    due_amount = serializers.FloatField()
+
+
+class orderItem_serializer(serializers.Serializer):
+    order = serializers.IntegerField()
+    product=serializers.IntegerField()
+    quantity = serializers.IntegerField()
+    tax=serializers.IntegerField()
+    unit_price = serializers.FloatField()
+    total = serializers.FloatField()
+
+
+class invoice_transaction_serializer(serializers.Serializer):
+    date = serializers.DateField()
+    amount = serializers.FloatField()
+    description = serializers.CharField()
+    payment_mode = serializers.IntegerField
+    reference = serializers.CharField()
