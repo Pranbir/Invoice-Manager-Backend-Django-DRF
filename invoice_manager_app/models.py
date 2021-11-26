@@ -49,6 +49,8 @@ class Tax(models.Model):
         return self.name
 
 
+
+
 class PaymentMode(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(null=True)
@@ -58,7 +60,7 @@ class PaymentMode(models.Model):
 
 
 class Order(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, related_name="orders", on_delete=models.CASCADE)
     date = models.DateField( auto_now_add=True)
     due_date = models.DateField(null=True)
     discount_type = models.CharField(max_length=10, choices=discount_type, default='percentage')
