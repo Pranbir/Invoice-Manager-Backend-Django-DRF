@@ -1,13 +1,14 @@
 from rest_framework import  response,status,viewsets,permissions,serializers
-from . serializer import CustomerSerializer
+from . serializer import CustomerSerializer,ProductSerializer
 from django.http.response import JsonResponse
-from .models import Customer
+from .models import Customer,Product
 from django.contrib.auth.models import User
 from knox.views import LoginView as KnoxLoginView
 from django.contrib.auth import login
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from django.forms.models import model_to_dict
 from . serializer import userserializers
+from rest_framework.generics import get_object_or_404
 
 # Create your views here.
 def index(request):
@@ -82,3 +83,40 @@ class LoginView(KnoxLoginView):
         user_model={"id":model['id'],"username":model['username']}
         temp_list.data['user']=user_model
         return response.Response({"data":temp_list.data})
+
+#arvind
+class ProductViewSet(viewsets.ViewSet):
+    serializer_class=ProductSerializer
+    queryset=Product.objects.all()
+    def list(self,request):
+        serializer=self.serializer_class(self.queryset,many=True)
+        return response.Response(serializer.data)
+    
+    def retrieve(self,request,pk=None):
+        product= get_object_or_404(self.queryset,pk=pk)
+        serializer=self.serializer_class(product)
+        return response.Response(serializer.data)
+    
+    def create(self,request):
+        serializer=self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return response.Response(serializer.data)
+    
+    def update(self,request,pk=None):
+        product= get_object_or_404(self.queryset,pk=pk)
+        serializer=self.serializer_class(product,request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return response.Response(serializer.data)
+    
+    def partial_update(self,request,pk=None):
+        product= get_object_or_404(self.queryset,pk=pk)
+        serializer=self.serializer_class(product,request.data,partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return response.Response(serializer.data)
+    def destroy(self,request,pk=None):
+        product= get_object_or_404(self.queryset,pk=pk)
+        product.delete() 
+        return response.Response({'message':'Succesfully Deleted'},status=status.HTTP_200_OK)

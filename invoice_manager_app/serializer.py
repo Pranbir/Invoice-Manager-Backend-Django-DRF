@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 # ashish
 
-from .models import Customer
+from .models import Customer,Product
 class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Customer
@@ -25,3 +25,9 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields=['id','username','password']
 # ----
+
+#arvind
+class ProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = '__all__'
