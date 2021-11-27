@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
+from .models import PaymentMode
+from .models import Tax
 
 # ashish
 
@@ -30,4 +32,21 @@ class UserSerializer(serializers.ModelSerializer):
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
+        fields = '__all__'
+
+
+#prachi 
+
+# PaymentMode Serializer
+
+class PaymentModeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PaymentMode
+        fields = '__all__'
+
+# TaxMode Serializer
+
+class TaxSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tax
         fields = '__all__'
