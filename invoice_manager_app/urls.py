@@ -14,6 +14,12 @@ router.register('customer',views.CustomerAPI,basename='customer')
 #arvind
 router.register('product',views.ProductViewSet,basename='Product')
 
+# Prachi
+
+router.register('paymentmode',views.PaymentModeAPI,basename='paymentmode')
+
+router.register('tax', views.TaxAPI, basename='tax')
+
 
 urlpatterns = [
     path('', views.index, name="api_working" ),

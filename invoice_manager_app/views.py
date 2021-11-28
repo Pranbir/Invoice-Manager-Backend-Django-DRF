@@ -9,6 +9,10 @@ from rest_framework.authtoken.serializers import AuthTokenSerializer
 from django.forms.models import model_to_dict
 from . serializer import userserializers
 from rest_framework.generics import get_object_or_404
+from . serializer import PaymentModeSerializer
+from .models import PaymentMode
+from . serializer import TaxSerializer
+from .models import Tax
 
 # Create your views here.
 def index(request):
@@ -120,3 +124,16 @@ class ProductViewSet(viewsets.ViewSet):
         product= get_object_or_404(self.queryset,pk=pk)
         product.delete() 
         return response.Response({'message':'Succesfully Deleted'},status=status.HTTP_200_OK)
+
+# Prachi
+
+class PaymentModeAPI(viewsets.ModelViewSet):
+    serializer_class=PaymentModeSerializer
+    queryset=PaymentMode.objects.all()
+   
+
+
+
+class TaxAPI(viewsets.ModelViewSet):
+    serializer_class=TaxSerializer
+    queryset=Tax.objects.all()
