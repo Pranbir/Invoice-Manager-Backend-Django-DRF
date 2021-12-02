@@ -87,19 +87,6 @@ class invoice_transaction_serializer(serializers.Serializer):
     payment_mode = serializers.IntegerField()
     reference = serializers.CharField()
 
-#=====================model serializer class ==========================
-
-class order_modelserializer(serializers.ModelSerializer):
-    class Meta:
-        model = Allmodels.Order
-        fields ='__all__'
-
-class customer_modelserializer(serializers.ModelSerializer):
-    orders=order_modelserializer(read_only=True,many=True)    #you have to defined in the primary table that you are going to give 
-    class Meta:
-        model=Allmodels.Customer
-        fields ='__all__'
-
 
 #=================invoice Transaction==================================
 
