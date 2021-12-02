@@ -452,31 +452,12 @@ class orders(views.APIView):
         else:
             return(response.Response("Need order id to delete the data"))    
 
-#=============================just for fun(orders using viewset)=============================================
-
-class order_viewset(viewsets.ViewSet):
-    serializer_class = serializer.order_modelserializer
-
-    def list(self, request):
-        order_items=Allmodels.Order.objects.all()
-        serialize=self.serializer_class(order_items,many=True)# many=True just told Django that item is collection of object /more than one object.
-        return(response.Response(serialize.data))
-
-    def retrieve(self, request,pk=None):
-        order_item=Allmodels.Order.objects.get(id=pk) 
-        serialize=self.serializer_class(order_item)  
-        return(response.Response(serialize.data)) 
-    def create(self,request):
-        
-        order_item=request.data 
-        print("request data======================>",order_item)
-        order_serialize=self.serializer_class(data=order_item)
-        order_serialize.is_valid()
-        order_serialize.save()
-        return(response.Response(order_serialize.data))
-
 # ==============================invoice using Model viewset =================================
 class invoice(viewsets.ModelViewSet):
+
+
+
+
     serializer_class= serializer.invoice_transaction_Modelserializer
     queryset=Allmodels.InvoiceTransaction.objects.all()
     print( "queryset",queryset)      

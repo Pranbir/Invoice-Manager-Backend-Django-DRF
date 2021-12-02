@@ -52,16 +52,10 @@ class TaxSerializer(serializers.ModelSerializer):
         model = Tax
         fields = '__all__'
 
-class customer_serializer(serializers.Serializer):
-    name = serializers.CharField(max_length=100)
-    address = serializers.CharField(max_length=200, )
-    phone = serializers.CharField(max_length=20)
-    email = serializers.EmailField(max_length=100)
 
 
-class tax_serializer(serializers.Serializer):
-    name = serializers.CharField(max_length=100)
-    rate = serializers.FloatField()
+
+
 
 
 class order_serializer(serializers.Serializer):
