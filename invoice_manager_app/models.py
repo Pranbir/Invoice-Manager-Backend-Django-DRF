@@ -73,8 +73,8 @@ class Order(models.Model):
 
 
 class OrderItems(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order,related_name='orderitem', on_delete=models.CASCADE)
+    product = models.ForeignKey(Product,related_name="orderitem", on_delete=models.CASCADE)
     quantity = models.IntegerField()
     tax = models.ForeignKey(Tax, on_delete=models.SET_NULL, null=True)
     unit_price = models.FloatField()
@@ -85,11 +85,11 @@ class OrderItems(models.Model):
 
 
 class InvoiceTransaction(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order,related_name='invoice', on_delete=models.CASCADE)
     date = models.DateField(auto_now_add=True)
     amount = models.FloatField()
     description = models.TextField(null=True)
-    payment_mode = models.ForeignKey(PaymentMode, on_delete=models.SET_NULL, null=True)
+    payment_mode = models.ForeignKey(PaymentMode,related_name="invoice",on_delete=models.SET_NULL, null=True)
     reference = models.CharField(max_length=100, null=True)
 
     def __str__(self):

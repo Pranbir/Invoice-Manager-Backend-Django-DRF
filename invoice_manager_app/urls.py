@@ -20,8 +20,7 @@ router.register('paymentmode',views.PaymentModeAPI,basename='paymentmode')
 
 router.register('tax', views.TaxAPI, basename='tax')
 #Abhishek
-order_router=routers.DefaultRouter()
-order_router.register('orders',views.order_viewset,basename="order_viewset")
+
 invoice_router=routers.DefaultRouter()
 invoice_router.register('invoices',views.invoice)
 
@@ -38,6 +37,6 @@ urlpatterns = [
     path("orderItems/<int:orderid>",views.order_item.as_view(),name='order_details_with_id'),
     path("orders/<int:order>",views.orders.as_view(),name="orders_with_id"),
     path("orders/",views.orders.as_view(),name="allorders"),
-    path("viewset_orders",include(order_router.urls)),
+    
     path("modelViewset_invoices",include(invoice_router.urls))
 ]
