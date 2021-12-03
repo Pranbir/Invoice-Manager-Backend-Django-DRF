@@ -464,3 +464,13 @@ class invoice(viewsets.ModelViewSet):
     filter_backends=(filters.SearchFilter,)
     search_fields=('id','amount','description')
     ordering_fields=['amount','id']
+
+
+    
+
+
+# app user - Rishi
+from . import models
+class AppUser(viewsets.ModelViewSet):
+    serializer_class=serializer.AppSerializer
+    queryset=models.AppUser.objects.all()
