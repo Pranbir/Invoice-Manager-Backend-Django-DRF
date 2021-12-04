@@ -25,6 +25,11 @@ invoice_router=routers.DefaultRouter()
 invoice_router.register('invoices',views.invoice)
 
 
+# appUser_router - rishi
+appUser_router = routers.DefaultRouter()
+appUser_router.register('appuser', views.AppUser, basename='appuser')
+
+
 urlpatterns = [
     path('', views.index, name="api_working" ),
     path('',include(router.urls)),
@@ -38,5 +43,6 @@ urlpatterns = [
     path("orders/<int:order>",views.orders.as_view(),name="orders_with_id"),
     path("orders/",views.orders.as_view(),name="allorders"),
     
-    path("modelViewset_invoices",include(invoice_router.urls))
+    path("modelViewset_invoices",include(invoice_router.urls)),
+    path('', include(appUser_router.urls))
 ]

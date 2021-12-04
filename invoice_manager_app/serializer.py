@@ -107,3 +107,13 @@ class payment_mode_Modelserializer(serializers.ModelSerializer):
     class Meta:
         model=Allmodels.PaymentMode
         fields ='__all__'        
+
+
+
+
+# appuser - Rishi
+from . import models
+class AppSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.AppUser
+        fields = '__all__'
